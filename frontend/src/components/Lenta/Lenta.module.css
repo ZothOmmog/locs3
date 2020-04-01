@@ -1,0 +1,42 @@
+.Lenta {
+	grid-area: cnt;
+
+	height: 600px;
+	width: 1000px;
+	background-color: white;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 5fr;
+	grid-template-areas: "hd" "lnt";
+	grid-row-gap: 10px;
+
+	align-items: center;
+	justify-items: center;
+}
+
+.head {
+	grid-area: hd;
+	font-size: 2.5em;
+}
+
+.lenta {
+	/* overflow-x: auto; */
+	grid-area: lnt;
+	height: 100%;
+	width: 100%;
+}
+
+.pages {
+	padding-bottom: 20px;
+}
+
+.page {
+	display: inline-block;
+	margin: 0 2px;
+	padding: 10px;
+}
+
+.currentPage {
+	background-color: gray;
+}
