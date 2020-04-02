@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
     for (let i = 0; i < countEvents; i++) {
       Events.push(
         {
+          id: i,
           name: `Мероприятие ${i}`,
           type: `Тип мероприятия ${i}`,
           info: eventInfo

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import style from './App.module.css';
-import {Header, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration} from './components/indexComponents.js';
+import {Header, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration, EventProfileContainer} from './components/indexComponents.js';
+
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
       <Route
         path='/Registration'
         render={ () => <Registration /> }
+      />
+      <Route
+        path='/EventProfile/:eventId'
+        render={ () => <EventProfileContainer />}
       />
     </div>
   );

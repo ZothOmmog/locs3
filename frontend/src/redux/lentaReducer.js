@@ -40,10 +40,10 @@ const lentaReducer = (state = initialState, action) => {
 	}
 }
 
-export const setEventsActionCreator = (newEvents, countAllEvents) => {
+export const setEvents = (newEvents, countAllEvents) => {
 	return { type: SET_EVENTS, events: newEvents, countAllEvents: countAllEvents };
 }
-export const changePageActionCreator = (newPage, newEvents) => {
+export const changePage = (newPage, newEvents) => {
 	return { type: CHANGE_PAGE,  page: newPage, events: newEvents };
 }
 

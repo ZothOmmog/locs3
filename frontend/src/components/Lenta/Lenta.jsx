@@ -20,7 +20,7 @@ const Lenta = (props) => {
 	});
 
 	const events = props.events.map(e => {
-		return <Event name={e.name} type={e.type} info={e.info} />;
+		return <Event id={e.id} name={e.name} type={e.type} info={e.info} />;
 	});
 
 	return (

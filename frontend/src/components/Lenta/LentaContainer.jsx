@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux"
 import Lenta from "./Lenta";
-import { setEventsActionCreator, changePageActionCreator } from "../../redux/lentaReducer";
+import { setEvents, changePage } from "../../redux/lentaReducer";
 
 class LentaToApiContainer extends React.Component {
 	componentDidMount() {
@@ -11,7 +11,6 @@ class LentaToApiContainer extends React.Component {
 	setEvents = () => {
 		const currentPage = this.props.state.currentPage;
 		const countEvents = this.props.state.countEvents;
-
 		fetch(`http://localhost:4000/users?page=${currentPage}&count=${countEvents}`)
 			.then(response => response.json())
 			.then(response => {
@@ -21,7 +20,6 @@ class LentaToApiContainer extends React.Component {
 	}
 
 	changePage = (page) => {
-		debugger;
 		const newPage = page;
 		const currentPage = newPage;
 		const countEvents = this.props.state.countEvents;
@@ -46,15 +44,4 @@ class LentaToApiContainer extends React.Component {
 
 const mapStateToProps = (state) => ({ state: state.lentaPage });
 
-const mapDispatchToProps = (dispatch) => ({
-    setEvents(events, countEvents) {
-        const setEvents = setEventsActionCreator(events, countEvents);
-        dispatch(setEvents);
-    },
-    changePage(newPage, newEvents) {
-        const changePage = changePageActionCreator(newPage, newEvents);
-        dispatch(changePage);
-    }
-})
-
-export const LentaContainer = connect(mapStateToProps, mapDispatchToProps)(LentaToApiContainer);
+export const LentaContainer = connect(mapStateToProps, {setEvents, changePage})(LentaToApiContainer);
