@@ -19,9 +19,9 @@ class Lenta extends React.Component {
 			.catch(error => alert(error));
 	}
 
-	changePage = (e) => {
+	changePage = (page) => {
 		debugger;
-		const newPage = e.target.innerText;
+		const newPage = page;
 		const currentPage = newPage;
 		const countEvents = this.props.state.countEvents;
 
@@ -32,10 +32,10 @@ class Lenta extends React.Component {
 	}
 
 	render() {
-		const page = this.props.state.pages.map(e => {
-			return e == this.props.state.currentPage ?
-				<div className={s.page + " button " + s.currentPage} onClick={this.changePage}>{e}</div> :
-				<div className={s.page + " button"} onClick={this.changePage}>{e}</div>;
+		const page = this.props.state.pages.map(p => {
+			return +p === +this.props.state.currentPage ?
+				<div className={s.page + " button " + s.currentPage} onClick={() => { this.changePage(p) }}>{p}</div> :
+				<div className={s.page + " button"} onClick={() => { this.changePage(p) }}>{p}</div>;
 		});
 
 		const events = this.props.state.events.map(e => {
@@ -45,7 +45,7 @@ class Lenta extends React.Component {
 		return (
 			<div className={s.Lenta}>
 				<div className={s.head}>Лента Мероприятий</div>
-				<div>
+				<div className={s.events}>
 					{events}
 				</div>
 				<div className={s.pages}>

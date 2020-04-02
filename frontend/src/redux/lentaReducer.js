@@ -32,8 +32,8 @@ const lentaReducer = (state = initialState, action) => {
 		case "CHANGE-PAGE":
 			return {
 				...state,
-				events: action.events,
-				currentPage: action.page
+				currentPage: action.page,
+				events: action.events
 			}
 		default:
 			return state;
