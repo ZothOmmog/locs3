@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import style from './App.module.css';
-import {Header, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration, EventProfileContainer} from './components/indexComponents.js';
+import { Header, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration, EventProfileContainer, AuthContainer } from './components/indexComponents.js';
 
 
 function App() {
@@ -12,19 +12,23 @@ function App() {
       <SearchContainer />
       <Route
         path='/Lenta'
-        render={ () => <LentaContainer /> }
+        render={() => <LentaContainer />}
       />
       <Route
         path='/AddEvent'
-        render={ () => <AddEventContainer /> }
+        render={() => <AddEventContainer />}
       />
       <Route
         path='/Registration'
-        render={ () => <Registration /> }
+        render={() => <Registration />}
+      />
+      <Route
+        path='/Auth'
+        render={() => <AuthContainer />}
       />
       <Route
         path='/EventProfile/:eventId'
-        render={ () => <EventProfileContainer />}
+        render={() => <EventProfileContainer />}
       />
     </div>
   );

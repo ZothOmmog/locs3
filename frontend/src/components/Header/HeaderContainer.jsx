@@ -7,7 +7,7 @@ export function Header() {
 	return (
 		<div className={s.Header}>
 			<div className={s.buttons}>
-				<NavLink to="/Auth" className={s.button}>
+				<NavLink to="/Registration" className={s.button}>
 					Вход
 				</NavLink>
 				<div className={s.partition}></div>

@@ -4,12 +4,14 @@ import searchReducer from './searchReducer';
 import addEventReducer from './addEventReducer';
 import lentaReducer from './lentaReducer';
 import eventProfileReducer from './eventProfileReducer';
+import authReducer from './authReducer';
 
 const reducers = combineReducers({
     searchPage: searchReducer,
     addEventPage: addEventReducer,
     lentaPage: lentaReducer,
-    EventProfilePage: eventProfileReducer
+    EventProfilePage: eventProfileReducer,
+    auth: authReducer
 });
 
 const store = createStore(reducers);

@@ -15,7 +15,7 @@ const eventProfileReducer = (state = initialState, action) => {
         case SET_CURRENT_EVENT:
             return { ...state, currentEvent: action.event };
         case REMOVE_CURRENT_EVENT:
-            return { ...state, currentEvent: {id: null, name: null, type: null, info: null} };
+            return { ...state, currentEvent: { id: null, name: null, type: null, info: null } };
         default:
             return state;
     }
