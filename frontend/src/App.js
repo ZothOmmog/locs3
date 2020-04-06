@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import style from './App.module.css';
-import { Header, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration, EventProfileContainer, AuthContainer } from './components/indexComponents.js';
+import { HeaderContainer, Navbar, SearchContainer, LentaContainer, AddEventContainer, Registration, EventProfileContainer, AuthContainer } from './components/indexComponents.js';
 
 
 function App() {
   return (
     <div className={style.App}>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <SearchContainer />
       <Route

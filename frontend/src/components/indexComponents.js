@@ -1,4 +1,4 @@
-export {Header} from './Header/Header.jsx';
+export {HeaderContainer} from './Header/HeaderContainer.jsx';
 export {Navbar} from './Navbar/Navbar.jsx';
 export {SearchContainer} from './Search/SearchContainer.jsx';
 export {LentaContainer} from './Lenta/LentaContainer.jsx';

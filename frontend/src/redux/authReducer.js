@@ -5,6 +5,7 @@ const CHANGE_CURRENT_PASS = 'CHANGE_CURRENT_PASS';
 
 const initialState = {
     user: {
+        id: null,
         mail: null,
         nick: null,
         city: null,

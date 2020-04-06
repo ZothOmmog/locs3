@@ -1,21 +1,31 @@
 import React from 'react';
-import s from "./Header.module.css";
 import "../CommonStyles/Link/Link.css";
-import { NavLink } from 'react-router-dom';
+import { Header } from './Header';
+import { connect } from 'react-redux';
+import { setUser } from '../../redux/authReducer';
 
-export function Header() {
-	return (
-		<div className={s.Header}>
-			<div className={s.buttons}>
-				<NavLink to="/Registration" className={s.button}>
-					Вход
-				</NavLink>
-				<div className={s.partition}></div>
-				<NavLink to="/Registration" className={s.button}>
-					Регистрация
-				</NavLink>
-			</div>
+class HeaderToApiContainer extends React.Component {
+	componentDidMount() {
+		fetch('http://localhost:4000/user/login/me', { credentials: "include" })
+			.then(res => {
+				return res.json();
+			})
+			.then(res => {
+				if (res.user) {
+					this.props.setUser(res.user);
+				}
+			})
+			.catch(err => console.log(err));
+	}
 
-		</div>
-	);
+	render() {
+		return <Header isAuth={this.props.isAuth} nick={this.props.nick} />;
+	}
 }
+
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth,
+	nick: state.auth.user.nick
+});
+
+export const HeaderContainer = connect(mapStateToProps, { setUser })(HeaderToApiContainer);

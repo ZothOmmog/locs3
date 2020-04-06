@@ -1,25 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Auth from './Auth';
-import {setUser, changeCurrentMail, changeCurrentPass} from '../../redux/authReducer';
+import { setUser, changeCurrentMail, changeCurrentPass } from '../../redux/authReducer';
 
 class AuthToApiContainer extends React.Component {
-    componentDidMount() {
-    }
-
     setUser = () => {
         const mail = this.props.auth.page.currentMail;
         const pass = this.props.auth.page.currentPass;
-        const login = { Mail: mail, Password: pass };
-        fetch(`http://localhost:4000/users/login/postLogin`, {
+        
+        fetch(`http://localhost:4000/user/login/postLogin`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({ Login: login })
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({ Login: { Mail: mail, Password: pass } }),
+            credentials: 'include'
         })
             .then(responce => responce.json())
-            .then(response => alert('Результат авторизации: ' + response.Login.Flag));
+            .then(response => {
+                if(response.Login.Flag) {
+                    fetch('http://localhost:4000/user/login/me', { credentials: "include" })
+                        .then(res => {
+                            return res.json();
+                        })
+                        .then(res => {
+                            if (res.user) {
+                                this.props.setUser(res.user);
+                            }
+                        })
+                        .catch(err => console.log(err));
+                    
+                    alert('Вы успешно авторизированы.');
+                }
+                else alert('Не верно введен логин или пароль.');
+            });
     }
 
     changeCurrentMail = (e) => {

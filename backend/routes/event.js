@@ -3,7 +3,6 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-
   //В этой функции должно быть обращение к бд
   const stateForEvents = (countEvents) => {
     let str = "Съешь ещё этих сладких французских булок и выпей чаю ";
@@ -34,34 +33,37 @@ router.get('/', function (req, res, next) {
     resEvents.push(events[i]);
   }
 
-
   res.json({ events: resEvents, countEvents: countEvents });
 });
 
-router.post('/login/postLogin', (req, res) => {
-  const users = [
-    {
-      mail: 'user1@gmail.com',
-      pass: '123',
-      nick: 'nickU1',
-      city: 'Perm',
-      urlPicture: null
-    },
-    {
-      mail: 'user2@yandex.ur',
-      pass: 'qwe',
-      nick: 'nickU2',
-      city: 'Moscow',
-      urlPicture: null
-    }
-  ];
+router.get('/Profile', function (req, res, next) {
+  //В этой функции должно быть обращение к бд
+  const stateForEvents = (countEvents) => {
+      let str = "Съешь ещё этих сладких французских булок и выпей чаю ";
+      let eventInfo = str.repeat(23);
 
-  const { Mail, Password } = req.body.Login;
-  const user = users.find(u => u.pass == Password && u.mail == Mail);
-  if (user) {
-    res.json({Login: {Flag: true}});
+      let Events = [];
+      for (let i = 0; i < countEvents; i++) {
+          Events.push(
+              {
+                  id: i,
+                  name: `Мероприятие ${i}`,
+                  type: `Тип мероприятия ${i}`,
+                  info: eventInfo
+              }
+          );
+      }
+      return Events;
   }
-  else res.json({Login: {Flag: false}});
+
+  const countEvents = 25;
+  const events = stateForEvents(countEvents);
+  const resEvents = [];
+
+  //Получаем номер страницы и кол-во мероприятий на 1 странице
+  let { eventId } = req.query;
+
+  res.json({ event: events[eventId] });
 });
 
 module.exports = router;

@@ -1,0 +1,53 @@
+/user/login/postLogin
+Тип запроса: POST
+Тело запроса: { "Login": { "Mail": "String", "Password": "String" } }
+Ответ:
+{ 
+  	"Login":
+  	{
+  		"Flag": "Bool"
+  	}
+}
+*Сервер возвращает в куки id пользователя (пока что в незашиврованном виде)
+
+/user/login/me
+Тип запроса: GET
+Ответ:
+{
+    user: {
+        "id": "Number",
+        "mail": "String",
+        "nick": "String",
+        "city": "String",
+        "urlPicture": "String"
+    }
+}
+
+
+
+/event?page=${currentPage}&count=${countEvents}
+Тип запроса: GET
+Ответ:
+{
+    "events": [ 
+        { 
+            "id": "Number", 
+            "name": "String", 
+            "tags": [{ "name": "String" }, ... ],
+            "info": "String"
+        },
+        ...
+    ]
+}
+
+/event/profile?eventId=${eventId}
+Тип запроса: GET
+Ответ:
+{
+    event: {
+        "id": "Number", 
+        "name": "String", 
+        "tags": [{ "name": "String" }, ... ],
+        "info": "String"
+    }
+}

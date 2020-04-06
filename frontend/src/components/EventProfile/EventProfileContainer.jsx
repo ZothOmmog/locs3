@@ -16,7 +16,7 @@ class EventProfileToApiContainer extends React.Component {
     setCurrentEvent = () => {
         const eventId = this.props.match.params.eventId;
 
-        fetch(`http://localhost:4000/eventProfile/?eventId=${eventId}`)
+        fetch(`http://localhost:4000/event/profile?eventId=${eventId}`)
             .then ( responce => responce.json() )
             .then ( response => this.props.setCurrentEvent(response.event) );
     }

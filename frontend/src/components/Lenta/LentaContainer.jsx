@@ -11,7 +11,7 @@ class LentaToApiContainer extends React.Component {
 	setEvents = () => {
 		const currentPage = this.props.state.currentPage;
 		const countEvents = this.props.state.countEvents;
-		fetch(`http://localhost:4000/users?page=${currentPage}&count=${countEvents}`)
+		fetch(`http://localhost:4000/event?page=${currentPage}&count=${countEvents}`)
 			.then(response => response.json())
 			.then(response => {
 				this.props.setEvents(response.events, response.countEvents);
@@ -24,7 +24,7 @@ class LentaToApiContainer extends React.Component {
 		const currentPage = newPage;
 		const countEvents = this.props.state.countEvents;
 
-		fetch(`http://localhost:4000/users?page=${currentPage}&count=${countEvents}`)
+		fetch(`http://localhost:4000/event?page=${currentPage}&count=${countEvents}`)
 			.then(response => response.json())
 			.then(response => this.props.changePage(newPage, response.events))
 			.catch(error => alert(error));
